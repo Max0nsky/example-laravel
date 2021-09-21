@@ -196,31 +196,25 @@
                 <p>Главная</p>
               </a>
             </li>
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
                 <i class="nav-icon far fa-plus-square"></i>
                 <p>
-                  Extras
+                  Категории
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../examples/lockscreen.html" class="nav-link">
+                  <a href="{{ route('categories.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Lockscreen</p>
+                    <p>Просмотр</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../examples/lockscreen.html" class="nav-link">
+                  <a href="{{ route('categories.create') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Lockscreen</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../examples/lockscreen.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Lockscreen</p>
+                    <p>Создание</p>
                   </a>
                 </li>
               </ul>
@@ -233,7 +227,7 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-      @yield('content')
+    @yield('content')
     <!-- /.content-wrapper -->
 
     <footer class="main-footer">
@@ -252,6 +246,16 @@
   <!-- ./wrapper -->
 
   <script src="{{ asset('public/assets/admin/js/admin.js') }}"></script>
+  <script>
+    $('.nav-sidebar a').each(function() {
+      let location = window.location.protocol + '//' + window.location.host + window.location.pathname;
+      let link = this.href;
+      if (link == location) {
+        $(this).addClass('active');
+        $(this).closest('.has-treeview').addClass('menu-open');
+      }
+    });
+  </script>
 </body>
 
 </html>
