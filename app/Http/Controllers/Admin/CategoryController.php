@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(2);
+        $categories = Category::paginate(10);
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -37,7 +37,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['title' => 'required']);
+        Category::create($request->all());
+        $request->session()->flash('sucess', 'Категория добавлена');
+
+        return redirect()->route('categories.index');
     }
 
 
@@ -49,7 +53,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        dd('edit');
+        $category = Category::find($id);
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -61,7 +66,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(['title' => 'required']);
+        $category = Category::find($id);
+        $category->update($request->all());
+        $request->session()->flash('sucess', 'Категория обновлена');
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -72,6 +82,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        dd('destroy');
+        $category = Category::find($id);
+        $category->delete();
+        return redirect()->route('categories.index')->with('sucess', 'Категория удалена');;
     }
 }
