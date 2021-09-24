@@ -242,6 +242,29 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon far fa-plus-square"></i>
+                <p>
+                  Статьи
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('posts.index') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Просмотр</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('posts.create') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Создание</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
